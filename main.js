@@ -20,9 +20,24 @@ function getResults(query) {
     .then(displayResults);
 }
 
+function getWeatherIcon(weather) {
+  let wType = weather.weather[0].main;
+  if (wType == "Clear") {
+    let wIcon = '<i class="fas fa-sun"></i>';
+    return wIcon;
+  } else if (wType == "Rain") {
+    let wIcon = '<i class="fas fa-cloud-showers-heavy"></i>';
+    return wIcon;
+  } else if (wType == "Clouds") {
+    let wIcon = '<i class="fas fa-cloud"></i>';
+    return wIcon;
+  }
+}
+
 function displayResults(weather) {
   console.log(weather);
   backgroundChange(weather);
+  let wIcon = getWeatherIcon(weather);
   let city = document.querySelector(".location .city");
   city.innerText = `${weather.name}, ${weather.sys.country}`;
 
@@ -34,22 +49,7 @@ function displayResults(weather) {
   temp.innerHTML = `${Math.round(weather.main.temp)} <span>°F</span>`;
 
   let weatherEl = document.querySelector(".current .weather");
-  weatherEl.innerText = weather.weather[0].main;
-
-  // console.log(weather.weather[0].main);
-  // switch (weather.weather[0].main) {
-  //   case weather.weather[0].main === "Clear":
-  //     document.body.style.backgroundImage = 'url("clear.jpg")';
-  //     break;
-  //   case weather.weather[0].main === "Rain":
-  //     document.body.style.backgroundImage = 'url("rainy.jpg")';
-  //     break;
-  //   case weather.weather[0].main === "Clouds":
-  //     document.body.style.backgroundImage = 'url("cloudy.jpg")';
-  //     break;
-  //   default:
-  //     document.body.style.backgroundImage = 'url("weather-background.jpeg")';
-  // }
+  weatherEl.innerHTML = `${wIcon}${weather.weather[0].main}`;
 
   let hiLow = document.querySelector(".hi-low");
   hiLow.innerText = `${Math.round(weather.main.temp_min)}°F - ${Math.round(
@@ -89,23 +89,6 @@ function dateBuilder(d) {
 
   return `${day} ${date} ${month} ${year}`;
 }
-
-// function changeBackground() {
-//   console.log(this.weather.weather[0].main);
-//   switch (weatherEl.value) {
-//     case weatherEl === "Clear":
-//       document.body.style.backgroundImage = 'url("clear.jpg")';
-//       break;
-//     case weatherEl === "Rain":
-//       document.body.style.backgroundImage = 'url("rainy.jpg")';
-//       break;
-//     case weatherEl === "Clouds":
-//       document.body.style.backgroundImage = 'url("cloudy.jpg")';
-//       break;
-//     default:
-//       document.body.style.backgroundImage = 'url("weather-background.jpeg")';
-//   }
-// }
 
 function backgroundChange(weather) {
   const wType = weather.weather[0].main;
