@@ -69,22 +69,27 @@ function applyIcon(icon) {
   } else if (icon === "50d" || "50n") {
     return "wi-fog";
   } else {
-    // whoa, destruction!
     return "wi-meteor";
   }
 }
 
 function displayForecast(location, forecast) {
   console.log(forecast);
-  // let fIcon = getForecastIcon(forecast);
 
   const forecastDiv = document.querySelector(".forecast-div");
 
   forecast.forEach((day) => {
     let date = new Date(day.dt * 1000);
-    let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
     let name = days[date.getDay()];
-    // console.log(day.weather[0].main);
     let dayBlock = document.createElement("div");
     dayBlock.className = "forecast__item";
     dayBlock.innerHTML = `<div class="forecast-item__heading">${name} ${
@@ -95,6 +100,7 @@ function displayForecast(location, forecast) {
       <span class="degrees">${Math.round(day.main.temp)}
       <i class="wi wi-degrees"></i></span></div>`;
     forecastDiv.appendChild(dayBlock);
+    forecastDiv.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   });
 }
 
