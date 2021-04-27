@@ -46,6 +46,9 @@ function getWeatherIcon(weather) {
   } else if (wType == "Clouds") {
     let wIcon = '<i class="fas fa-cloud"></i>';
     return wIcon;
+  } else if (wType == "Snow") {
+    let wIcon = '<i class="wi wi-snow"></i>';
+    return wIcon;
   }
 }
 
@@ -171,6 +174,8 @@ function backgroundChange(weather) {
     document.body.style.backgroundImage = "url('/css/cloudy.jpg')";
   } else if (wType == "Clear") {
     document.body.style.backgroundImage = "url(/css/clear.jpg)";
+  } else if (wType == "Snow") {
+    document.body.style.backgroundImage = "url(/css/snowy.jpg)";
   } else {
     document.body.style.backgroundImage = "url(/css/weather-background.jpeg)";
   }
