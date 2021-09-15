@@ -169,14 +169,14 @@ function dateBuilder(d) {
 function backgroundChange(weather) {
   const wType = weather.weather[0].main;
   if (wType == "Rain") {
-    document.body.style.backgroundImage = "url('css/rainy.jpg')";
+    document.body.style.backgroundImage = "url('rainy.jpg')";
   } else if (wType == "Clouds") {
-    document.body.style.backgroundImage = "url('css/cloudy.jpg')";
+    document.body.style.backgroundImage = "url('cloudy.jpg')";
   } else if (wType == "Clear") {
-    document.body.style.backgroundImage = "url(css/clear.jpg)";
+    document.body.style.backgroundImage = "url(clear.jpg)";
   } else if (wType == "Snow") {
-    document.body.style.backgroundImage = "url(css/snowy.jpg)";
+    document.body.style.backgroundImage = "url(snowy.jpg)";
   } else {
-    document.body.style.backgroundImage = "url(css/weather-background.jpeg)";
+    document.body.style.backgroundImage = "url(weather-background.jpeg)";
   }
 }
